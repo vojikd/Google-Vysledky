@@ -1,0 +1,11 @@
+# Knihovny – obnoví se přes "npm install"
+node_modules/
+
+# Tajné proměnné prostředí (API klíč)
+.env
+
+# Originální zadání (obsahuje osobní údaje, nesdílet)
+ZADANI.md
+
+# Systémové soubory macOS
+.DS_Store
