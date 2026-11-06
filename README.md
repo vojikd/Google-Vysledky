@@ -30,6 +30,7 @@ Webová aplikace, která pro zadanou klíčovou frázi stáhne **přirozené (or
 - HTML, CSS, JavaScript (bez frameworku)
 - Vitest (unit testy)
 - Render (hosting)
+- Docker, Docker Compose (lokální vývoj)
 
 ## Spuštění lokálně
 
