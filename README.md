@@ -48,6 +48,23 @@ npm run dev
 
 Aplikace poběží na http://localhost:3000.
 
+## Spuštění přes Docker
+
+Potřebuješ jen [Docker Desktop](https://www.docker.com/products/docker-desktop/), Node.js instalovat nemusíš.
+
+```bash
+cp .env.example .env
+```
+
+Do `.env` doplň API klíč a spusť:
+
+```bash
+docker compose up --build
+```
+
+Aplikace poběží na http://localhost:3000. Díky propojení složky projektu s kontejnerem se změny v kódu projeví bez restartu. Zastavení: `Ctrl+C` a `docker compose down`.
+
+
 ## Testy
 
 ```bash
