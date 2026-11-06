@@ -1,6 +1,15 @@
+import { toJson, toCsv } from "./formats.js";
+
 const form = document.querySelector("#search-form");
 const input = document.querySelector("#query");
 const resultsEl = document.querySelector("#results");
+const downloadsEl = document.querySelector("#downloads");
+
+// Poslední úspěšně nalezené výsledky. Z nich se vytvoří soubory ke stažení.
+let currentQuery = "";
+let currentResults = [];
+
+
 
 form.addEventListener("submit", async (event) => {
   event.preventDefault();
@@ -11,6 +20,8 @@ form.addEventListener("submit", async (event) => {
   }
 
   resultsEl.textContent = "Hledám…";
+  downloadsEl.hidden = true;
+
 
   try {
     const response = await fetch(`/api/search?q=${encodeURIComponent(query)}`);
@@ -21,7 +32,10 @@ form.addEventListener("submit", async (event) => {
       return;
     }
 
+    currentQuery = data.query;
+    currentResults = data.results;
     showResults(data.results);
+    downloadsEl.hidden = data.results.length === 0;
   } catch (error) {
     resultsEl.textContent = "Nepodařilo se spojit se serverem.";
   }
@@ -54,3 +68,26 @@ function showResults(results) {
 
   resultsEl.append(list);
 }
+
+// Nabídne prohlížeči text ke stažení jako soubor.
+function downloadFile(content, fileName, mimeType) {
+  const blob = new Blob([content], { type: mimeType });
+  const url = URL.createObjectURL(blob);
+
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = fileName;
+  link.click();
+
+  URL.revokeObjectURL(url);
+}
+
+document.querySelector("#download-json").addEventListener("click", () => {
+  downloadFile(toJson(currentResults), `vysledky-${currentQuery}.json`, "application/json");
+});
+
+document.querySelector("#download-csv").addEventListener("click", () => {
+  // "\uFEFF" (BOM) na začátku: Excel díky němu správně zobrazí češtinu.
+  downloadFile("\uFEFF" + toCsv(currentResults), `vysledky-${currentQuery}.csv`, "text/csv;charset=utf-8");
+});
+
