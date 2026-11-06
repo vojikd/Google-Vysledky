@@ -1,0 +1,87 @@
+/* Základ stránky: úzký sloupec uprostřed, systémové písmo */
+body {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  font-family: system-ui, sans-serif;
+  line-height: 1.5;
+  color: #202124;
+}
+
+/* Formulář: popisek nad řádkem s inputem a tlačítkem */
+#search-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+#search-form label {
+  width: 100%;
+  font-weight: 600;
+}
+
+#query {
+  flex: 1;
+  padding: 0.6rem 0.8rem;
+  font-size: 1rem;
+  border: 1px solid #dadce0;
+  border-radius: 6px;
+}
+
+button {
+  padding: 0.6rem 1rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 6px;
+  background: #1a73e8;
+  color: white;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #1765cc;
+}
+
+/* Tlačítka pro stažení: pod formulářem, světlejší varianta */
+#downloads {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+#downloads[hidden] {
+  display: none;
+}
+
+#downloads button {
+  background: #e8f0fe;
+  color: #1a73e8;
+}
+
+#downloads button:hover {
+  background: #d2e3fc;
+}
+
+/* Výsledky: modrý titulek, šedý popisek */
+#results {
+  margin-top: 1.5rem;
+}
+
+#results li {
+  margin-bottom: 1.25rem;
+}
+
+#results a {
+  font-size: 1.1rem;
+  color: #1a0dab;
+  text-decoration: none;
+}
+
+#results a:hover {
+  text-decoration: underline;
+}
+
+#results p {
+  margin: 0.25rem 0 0;
+  color: #4d5156;
+}
