@@ -71,8 +71,4 @@ public/style.css     vzhled
 tests/               unit testy (Vitest)
 ```
 
-## Co bych vylepšil
 
-- **Ochrana kreditu:** endpoint je veřejný, takže kdokoli může spotřebovávat kredit Serperu. Pomohlo by omezení počtu dotazů (rate limiting) a krátkodobá cache stejných dotazů.
-- **Testy endpointu:** otestovat `/api/search` včetně chybových stavů s podvrženou (mockovanou) odpovědí Serperu.
-- **Docker compose** pro lokální vývoj.
